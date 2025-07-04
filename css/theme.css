@@ -1,0 +1,48 @@
+/* Color Variables for light/dark themes */
+:root {
+    --bg-color: #fff;
+    --text-color: #000;
+    --border-color: #000;
+}
+
+[data-theme="dark"] {
+    --bg-color: #000;
+    --text-color: #fff;
+    --border-color: #fff;
+}
+
+/* Apply theming globally with smooth transition */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 1s, color 1s;
+}
+
+/* Optional: Apply to common containers */
+.square {
+    border-color: var(--border-color);
+    color: var(--text-color);
+    transition: color 1s, border-color 1s;
+}
+
+/* Toggle Button Styling */
+#themeToggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: transparent;
+    border: 2px solid var(--text-color);
+    color: var(--text-color);
+    font-size: 1.8rem;
+    padding: 10px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 1s;
+    user-select: none;
+    z-index: 9999;
+}
+
+#themeToggle:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+}
