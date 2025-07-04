@@ -8,23 +8,35 @@ document.addEventListener('DOMContentLoaded', () => {
         const cleaned = hex.replace(/\s+/g, '').toLowerCase();
         if (!/^[0-9a-f]{16}$/.test(cleaned)) {
             console.warn(`Invalid hex: ${hex}`);
+            el.textContent = hex; // fallback to text
             return;
         }
 
         const filename = `0x${cleaned}.png`;
+        const labelText = `0x${cleaned}.psg`;  // <--- changed label text here
+
         const img = document.createElement('img');
-        img.src = `tx/${filename}`;
+        img.src = `../tx/${filename}`;
         img.alt = filename;
         img.className = 'texture-image';
 
-        // Clear the element content first
-        el.textContent = '';
+        const wrapper = document.createElement('div');
+        wrapper.className = 'texture-wrapper';
 
-        // If image fails to load, restore original hex text
+        const label = document.createElement('div');
+        label.className = 'hex-label';
+        label.textContent = labelText;
+
         img.onerror = () => {
-            el.textContent = hex;
+            wrapper.innerHTML = '';
+            wrapper.appendChild(label);
         };
 
-        el.appendChild(img);
+        img.onload = () => {
+            wrapper.appendChild(img);
+            wrapper.appendChild(label);
+        };
+
+        el.replaceWith(wrapper);
     });
 });
