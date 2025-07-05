@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const labelText = `0x${cleaned}.psg`;  // <--- changed label text here
 
         const img = document.createElement('img');
-        img.src = `../tx/${filename}`;
+        img.src = `../../../tx/${filename}`;
         img.alt = filename;
         img.className = 'texture-image';
 
